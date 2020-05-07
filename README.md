@@ -1,1 +1,3 @@
 # WeatherApp
+
+SwiftUI MVVM
