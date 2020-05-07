@@ -21,17 +21,24 @@ class WeeklyTemperatureViewModel: Identifiable {
         guard let temperature = self.weather.temperatureHigh else {
             return "- ºF"
         }
-        return "\(Int(temperature))ºF"
+        return temperature.temperatureString()
     }
     
     var minTemperature: String {
         guard let temperature = self.weather.temperatureLow else {
             return "--ºF"
         }
-        return "\(Int(temperature))ºF"
+        return temperature.temperatureString()
     }
     
     var time: String {
         return Date(timeIntervalSince1970: weather.time).formattedDay
+    }
+    
+    var weatherIcon: WeatherIcon {
+        guard let icon = self.weather.icon else {
+            return WeatherIcon.clearDay
+        }
+        return WeatherIcon.init(rawValue: icon) ?? WeatherIcon.clearDay
     }
 }

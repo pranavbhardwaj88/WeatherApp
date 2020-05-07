@@ -21,7 +21,7 @@ class WeatherViewModel: ObservableObject {
         guard let temperature = self.weatherData?.currently?.temperature else {
             return "--ºF"
         }
-        return "\(Int(temperature))ºF"
+        return temperature.temperatureString()
     }
     
     var currentWeatherSummary: String {
@@ -52,6 +52,14 @@ class WeatherViewModel: ObservableObject {
         didSet {
             didChange.send(self)
         }
+    }
+    
+    var weatherIcon: WeatherIcon {
+        guard let icon = self.weatherData?.currently?.icon else {
+            return WeatherIcon.clearDay
+        }
+        
+        return WeatherIcon.init(rawValue: icon) ?? WeatherIcon.clearDay
     }
     
     init() {

@@ -12,12 +12,17 @@ struct CurrentTemperatureView: View {
     @ObservedObject var viewModel: WeatherViewModel
     
     var body: some View {
+        
         VStack(alignment: .center, spacing: 10) {
             Text(viewModel.cityName)
                 .font(.largeTitle)
-            Text(viewModel.currentTemperature)
-                .font(.largeTitle)
-                .fontWeight(.bold)
+            HStack(alignment: .center, spacing: 10) {
+                viewModel.weatherIcon.icon
+                    .foregroundColor(viewModel.weatherIcon.iconColor)
+                Text(viewModel.currentTemperature)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+            }
             Text(viewModel.currentWeatherSummary)
                 .font(.body)
             Text(viewModel.currentDay)

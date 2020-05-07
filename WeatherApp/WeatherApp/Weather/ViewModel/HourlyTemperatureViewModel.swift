@@ -21,10 +21,17 @@ class HourlyTemperatureViewModel: Identifiable {
         guard let temperature = self.weather.temperature else {
             return "--ºF"
         }
-        return "\(Int(temperature))ºF"
+        return temperature.temperatureString()
     }
     
     var time: String {
         return Date(timeIntervalSince1970: weather.time).formattedHour
+    }
+    
+    var weatherIcon: WeatherIcon {
+        guard let icon = self.weather.icon else {
+            return WeatherIcon.clearDay
+        }
+        return WeatherIcon.init(rawValue: icon) ?? WeatherIcon.clearDay
     }
 }

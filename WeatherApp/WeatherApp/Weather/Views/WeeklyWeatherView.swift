@@ -15,10 +15,12 @@ struct WeeklyWeatherView: View {
          HStack(alignment: .center) {
             Text(viewModel.time)
             Spacer()
-            Spacer()
-            Text(viewModel.maxTemperature)
-            Spacer()
-            Text(viewModel.minTemperature)
+            HStack(spacing: 40) {
+                viewModel.weatherIcon.icon
+                .foregroundColor(viewModel.weatherIcon.iconColor)
+                Text(viewModel.maxTemperature)
+                Text(viewModel.minTemperature)
+            }
         }
         .frame(maxWidth: .infinity)
     }

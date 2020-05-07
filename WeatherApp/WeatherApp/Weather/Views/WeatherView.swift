@@ -28,12 +28,12 @@ struct WeatherView: View {
                            Text("This week")
                             .font(.headline)
                             Spacer()
-                            Spacer()
-                            Text("Max")
-                            .font(.headline)
-                            Spacer()
-                            Text("Min")
-                            .font(.headline)
+                            HStack(spacing: 40) {
+                                Text("Max")
+                                .font(.headline)
+                                Text("Min")
+                                .font(.headline)
+                            }
                         }
                     ) {
                         ForEach(viewModel.weeklyTemperatures) { model in

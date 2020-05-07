@@ -18,11 +18,13 @@ struct HourlyWeatherView: View {
                 ForEach(viewModel.hourlyTemperatures) { data in
                     VStack (spacing: 16) {
                         Text(data.time)
+                        data.weatherIcon.icon
+                            .foregroundColor(data.weatherIcon.iconColor)
                         Text(data.temperature)
                     }
                 }
             }
-            .frame(height: 60)
+            .frame(height: 80)
             .padding([.trailing, .leading])
         }
         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))

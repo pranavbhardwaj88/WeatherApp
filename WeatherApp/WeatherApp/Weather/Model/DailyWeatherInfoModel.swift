@@ -13,6 +13,7 @@ struct DailyWeatherInfoModel: Codable, Identifiable {
         return time
     }
     var time: TimeInterval
+    var icon: String?
     var temperatureHigh: Double?
     var temperatureLow: Double?
 }

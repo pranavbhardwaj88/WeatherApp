@@ -13,4 +13,5 @@ struct HourlyWeatherInforModel: Codable, Identifiable {
     }
     var time: TimeInterval
     var temperature: Double?
+    var icon: String?
 }
