@@ -1,0 +1,4 @@
+
+URL_SCHEME = https
+BASE_URL = api.darksky.net
+API_KEY = 2bb07c3bece89caf533ac9a5d23d8417
