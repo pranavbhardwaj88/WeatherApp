@@ -14,7 +14,7 @@ public enum Config{
         case missingKey(_ key:String), invalidValue
     }
 
-    public static func value<T>(for key: String) throws -> T where T: LosslessStringConvertible {
+    static func value<T>(for key: String) throws -> T where T: LosslessStringConvertible {
         guard let object = Bundle.main.object(forInfoDictionaryKey:key) else {
             throw Error.missingKey(key)
         }

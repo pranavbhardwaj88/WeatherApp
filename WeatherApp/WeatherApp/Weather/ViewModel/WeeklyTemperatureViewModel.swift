@@ -21,14 +21,14 @@ class WeeklyTemperatureViewModel: Identifiable {
         guard let temperature = self.weather.temperatureHigh else {
             return "- ºF"
         }
-        return temperature.temperatureString()
+        return StringUtility.temperatureString(fromDouble:temperature)
     }
     
     var minTemperature: String {
         guard let temperature = self.weather.temperatureLow else {
             return "--ºF"
         }
-        return temperature.temperatureString()
+        return StringUtility.temperatureString(fromDouble:temperature)
     }
     
     var time: String {

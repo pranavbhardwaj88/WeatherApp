@@ -16,7 +16,7 @@ struct WeeklyWeatherView: View {
             Text(viewModel.time)
             Spacer()
             HStack(spacing: 40) {
-                viewModel.weatherIcon.icon
+                Image(systemName: viewModel.weatherIcon.icon)
                 .foregroundColor(viewModel.weatherIcon.iconColor)
                 Text(viewModel.maxTemperature)
                 Text(viewModel.minTemperature)

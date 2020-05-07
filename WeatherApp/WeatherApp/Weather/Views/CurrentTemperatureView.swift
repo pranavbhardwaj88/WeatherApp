@@ -17,7 +17,7 @@ struct CurrentTemperatureView: View {
             Text(viewModel.cityName)
                 .font(.largeTitle)
             HStack(alignment: .center, spacing: 10) {
-                viewModel.weatherIcon.icon
+                Image(systemName: viewModel.weatherIcon.icon)
                     .foregroundColor(viewModel.weatherIcon.iconColor)
                 Text(viewModel.currentTemperature)
                     .font(.largeTitle)

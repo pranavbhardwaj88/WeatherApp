@@ -18,7 +18,7 @@ struct HourlyWeatherView: View {
                 ForEach(viewModel.hourlyTemperatures) { data in
                     VStack (spacing: 16) {
                         Text(data.time)
-                        data.weatherIcon.icon
+                        Image(systemName: data.weatherIcon.icon)
                             .foregroundColor(data.weatherIcon.iconColor)
                         Text(data.temperature)
                     }

@@ -21,7 +21,7 @@ class WeatherViewModel: ObservableObject {
         guard let temperature = self.weatherData?.currently?.temperature else {
             return "--ºF"
         }
-        return temperature.temperatureString()
+        return StringUtility.temperatureString(fromDouble:temperature)
     }
     
     var currentWeatherSummary: String {

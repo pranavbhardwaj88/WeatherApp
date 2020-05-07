@@ -21,7 +21,7 @@ class HourlyTemperatureViewModel: Identifiable {
         guard let temperature = self.weather.temperature else {
             return "--ºF"
         }
-        return temperature.temperatureString()
+        return StringUtility.temperatureString(fromDouble:temperature)
     }
     
     var time: String {

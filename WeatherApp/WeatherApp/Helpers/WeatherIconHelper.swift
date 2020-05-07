@@ -19,24 +19,24 @@ enum WeatherIcon: String {
     case partyCloudyDay = "partly-cloudy-day"
     case partyCloudyNight = "partly-cloudy-night"
     
-    var icon: Image {
+    var icon: String {
         switch self {
         case .clearDay:
-            return Image(systemName: "sun.max.fill")
+            return  "sun.max.fill"
         case .clearNight:
-            return Image(systemName: "moon.stars.fill")
+            return "moon.stars.fill"
         case .rain:
-            return Image(systemName: "cloud.rain.fill")
+            return "cloud.rain.fill"
         case .snow:
-            return Image(systemName: "snow")
+            return  "snow"
         case .wind:
-            return Image(systemName: "wind")
+            return "wind"
         case .cloudy:
-            return Image(systemName: "cloud.fill")
+            return "cloud.fill"
         case .partyCloudyDay:
-            return Image(systemName: "cloud.sun.fill")
+            return "cloud.sun.fill"
         case .partyCloudyNight:
-            return Image(systemName: "cloud.moon.fill")
+            return "cloud.moon.fill"
         }
     }
     

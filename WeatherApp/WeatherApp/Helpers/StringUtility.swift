@@ -1,5 +1,5 @@
 //
-//  DoubleExtension.swift
+//  StringUtility.swift
 //  WeatherApp
 //
 //  Created by Pranav Bhardwaj on 07/05/20.
@@ -8,14 +8,12 @@
 
 import Foundation
 
-
-extension Double {
-    
-    func temperatureString() -> String {
+class StringUtility {
+    static  func temperatureString(fromDouble temperature: Double) -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.allowsFloats = false
         
-        let temperatureString = numberFormatter.string(from: NSNumber(value: self)) ?? "--"
+        let temperatureString = numberFormatter.string(from: NSNumber(value: temperature)) ?? "--"
         return "\(temperatureString)ºF"
     }
 }
