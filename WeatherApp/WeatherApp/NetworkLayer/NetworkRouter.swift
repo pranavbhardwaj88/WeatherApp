@@ -7,29 +7,26 @@
 //
 
 import Foundation
-enum NetworkRouter {
-    case getWeatherData(latitude: Double, longitude:Double)
-    
+
+enum HTTPMethod: String {
+    case get = "GET"
+    case post = "POST"
+    case put = "PUT"
+    case delete = "DELETE"
+}
+protocol NetworkRouter {
+    var scheme: String {get}
+    var host: String {get}
+    var method: HTTPMethod {get}
+    var path: String {get}
+}
+
+extension NetworkRouter {
     var scheme: String {
         return try! Config.value(for: "URL_SCHEME")
     }
-    
+
     var host: String {
         return try! Config.value(for: "BASE_URL")
-    }
-    
-    var method: String {
-        switch self {
-        case .getWeatherData:
-            return "GET"
-        }
-    }
-    
-    var path: String {
-        let apiKey:String = try! Config.value(for: "API_KEY")
-        switch self {
-        case .getWeatherData(let latitude, let longitude):
-            return "/forecast/\(apiKey)/\(latitude),\(longitude)"
-        }
     }
 }

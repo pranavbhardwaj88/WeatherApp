@@ -30,7 +30,7 @@ extension NetworkService {
         let session = URLSession(configuration: .default)
         guard let url = components.url else { return }
         var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = router.method
+        urlRequest.httpMethod = router.method.rawValue
         urlRequest.httpBody = body
             
         

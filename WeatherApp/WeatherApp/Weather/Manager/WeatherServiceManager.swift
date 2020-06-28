@@ -8,17 +8,36 @@
 
 import Foundation
 
+enum WeatherAPI : NetworkRouter {
+    case getWeatherData(latitude: Double, longitude:Double)
+    
+    var method: HTTPMethod {
+        switch self {
+        case .getWeatherData:
+            return .get
+        }
+    }
+
+    var path: String {
+        let apiKey:String = try! Config.value(for: "API_KEY")
+        switch self {
+        case .getWeatherData(let latitude, let longitude):
+            return "/forecast/\(apiKey)/\(latitude),\(longitude)"
+        }
+    }
+}
+
 class WeatherServiceManager: NetworkService {
     
-    class func getWeather(latitude: Double, longitude: Double, completion: @escaping (WeatherInfoModel?, String?) -> Void) {
+    class func getWeather(latitude: Double, longitude: Double, completion: @escaping (WeatherInfoModel?) -> Void) {
         
-        request(type: WeatherInfoModel.self, router: .getWeatherData(latitude: latitude, longitude: longitude), completion: { (response) in
+        request(type: WeatherInfoModel.self, router: WeatherAPI.getWeatherData(latitude: latitude, longitude: longitude), completion: { (response) in
             if let error = response.error {
-                completion(nil, error.localizedDescription)
+                print(error.localizedDescription)
             } else if let responseObject = response.responseObject{
-                completion(responseObject, nil)
+                completion(responseObject)
             } else {
-                completion(nil, "No data")
+                print("No data")
             }
         })
     }

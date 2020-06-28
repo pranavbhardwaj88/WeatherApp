@@ -74,7 +74,7 @@ class WeatherViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.cityName = cityName
             }
-            WeatherServiceManager.getWeather(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude) { (data, error) in
+            WeatherServiceManager.getWeather(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude) { (data) in
                 if let weatherData = data {
                     self.hourlyTemperatures = weatherData.hourly.list.map(HourlyTemperatureViewModel.init)
                     self.weeklyTemperatures = weatherData.daily.list.map(WeeklyTemperatureViewModel.init)
