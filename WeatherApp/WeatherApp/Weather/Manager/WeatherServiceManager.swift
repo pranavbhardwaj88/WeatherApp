@@ -19,7 +19,7 @@ enum WeatherAPI : NetworkRouter {
     }
 
     var path: String {
-        let apiKey:String = try! Config.value(for: "API_KEY")
+        let apiKey:String = try! AppConfiguration.config(key: "API_KEY")
         switch self {
         case .getWeatherData(let latitude, let longitude):
             return "/forecast/\(apiKey)/\(latitude),\(longitude)"

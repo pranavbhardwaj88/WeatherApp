@@ -23,10 +23,10 @@ protocol NetworkRouter {
 
 extension NetworkRouter {
     var scheme: String {
-        return try! Config.value(for: "URL_SCHEME")
+        return try! AppConfiguration.config(key:"URL_SCHEME")
     }
 
     var host: String {
-        return try! Config.value(for: "BASE_URL")
+        return try! AppConfiguration.config(key: "BASE_URL")
     }
 }

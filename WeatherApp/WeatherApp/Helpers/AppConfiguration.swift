@@ -8,15 +8,15 @@
 
 import Foundation
 
-public enum Config{
+public enum AppConfiguration{
     
-    enum Error: Swift.Error {
-        case missingKey(_ key:String), invalidValue
+    enum AppError: Swift.Error {
+        case keyNotAvailable(_ key:String), invalidValue
     }
 
-    static func value<T>(for key: String) throws -> T where T: LosslessStringConvertible {
+    static func config<T>(key: String) throws -> T where T: LosslessStringConvertible {
         guard let object = Bundle.main.object(forInfoDictionaryKey:key) else {
-            throw Error.missingKey(key)
+            throw AppError.keyNotAvailable(key)
         }
 
         switch object {
@@ -26,7 +26,7 @@ public enum Config{
             guard let value = T(string) else { fallthrough }
             return value
         default:
-            throw Error.invalidValue
+            throw AppError.invalidValue
         }
     }
     
