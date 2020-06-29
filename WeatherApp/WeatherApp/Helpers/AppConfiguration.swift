@@ -4,7 +4,7 @@
 //
 //  Created by Pranav Bhardwaj on 03/05/20.
 //  Copyright © 2020 Pranav Bhardwaj. All rights reserved.
-//
+// https://nshipster.com/xcconfig/
 
 import Foundation
 
