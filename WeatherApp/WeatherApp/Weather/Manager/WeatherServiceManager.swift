@@ -29,15 +29,14 @@ enum WeatherAPI : NetworkRouter {
 
 class WeatherServiceManager: NetworkService {
     
-    class func getWeather(latitude: Double, longitude: Double, completion: @escaping (WeatherInfoModel?) -> Void) {
+    class func getWeather(latitude: Double, longitude: Double, completion: @escaping (WeatherInfoModel) -> Void) {
         
-        request(type: WeatherInfoModel.self, router: WeatherAPI.getWeatherData(latitude: latitude, longitude: longitude), completion: { (response) in
-            if let error = response.error {
-                print(error.localizedDescription)
-            } else if let responseObject = response.responseObject{
-                completion(responseObject)
-            } else {
-                print("No data")
+        request(type: WeatherInfoModel.self, router: WeatherAPI.getWeatherData(latitude: latitude, longitude: longitude), completion: { (result) in
+            switch result {
+            case .success(let model):
+                completion(model)
+            case .failure(let error):
+                print("Network Error: \(error)")
             }
         })
     }

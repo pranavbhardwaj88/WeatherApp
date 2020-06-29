@@ -8,18 +8,13 @@
 
 import Foundation
 
-struct ResponseContainer <T: Codable> {
-    var responseObject: T?
-    var error: Error?
-}
-
 protocol NetworkService {
-    static func request<T: Codable>(type: T.Type, router: NetworkRouter, queryItems: [URLQueryItem]?, body: Data?, completion: @escaping ((ResponseContainer<T>)) -> ())
+    static func request<T: Codable>(type: T.Type, router: NetworkRouter, queryItems: [URLQueryItem]?, body: Data?, completion: @escaping (Result<T, Error>) -> ())
     static func parameter(parameterDictionary: [String:String]) -> [URLQueryItem]
 }
 
 extension NetworkService {
-    static func request<T: Codable>(type: T.Type, router: NetworkRouter, queryItems: [URLQueryItem]? = nil, body: Data? = nil ,completion: @escaping ((ResponseContainer<T>)) -> ()) {
+    static func request<T: Codable>(type: T.Type, router: NetworkRouter, queryItems: [URLQueryItem]? = nil, body: Data? = nil, completion: @escaping (Result<T, Error>) -> ()){
         
         var components = URLComponents()
         components.scheme = router.scheme
@@ -39,9 +34,9 @@ extension NetworkService {
             do {
                 let decoder = JSONDecoder()
                 let responseObject = try decoder.decode(T.self, from: data)
-                completion(ResponseContainer(responseObject: responseObject, error: nil))
+                completion(.success(responseObject))
             } catch let error {
-                completion(ResponseContainer(responseObject: nil, error: error))
+                completion(.failure(error))
             }
         }
         dataTask.resume()
